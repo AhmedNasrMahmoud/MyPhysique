@@ -2,7 +2,7 @@ import React from 'react';
 
 function About() {
     return (
-        <div>
+        <div className='pt-2'>
             {/* About content goes here */}
             THIS IS ABOUT PAGE BITCHES
 
