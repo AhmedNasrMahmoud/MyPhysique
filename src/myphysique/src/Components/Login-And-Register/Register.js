@@ -14,33 +14,32 @@ const Register = () => {
     });
 
     const handleChange = (e) => {
-        setFormData({ ...formData,
-            [e.target.firstName]: e.target.value,
-            [e.target.lastName]: e.target.value,
-            [e.target.email]: e.target.value,
-            [e.target.username]: e.target.value,
-            [e.target.password]: e.target.value});
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
     };
+    
 
-    const handleSubmit = (e) => {
+    const  handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData); 
         
-
-
         try {
-            const response = fetch('http://localhost:3000/register', {
+            const response = await fetch('http://localhost:3000/register', {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 body: JSON.stringify(formData),
             });
-
+    
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            
-            const data = response.json();
+    
+            const data = await response.json();
             console.log(data);
-
         } catch (error) {
             console.error("There was a problem with the fetch operation:", error);
         }
