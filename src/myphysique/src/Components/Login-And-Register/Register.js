@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';
+
 
 const Register = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -11,12 +14,36 @@ const Register = () => {
     });
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData({ ...formData,
+            [e.target.firstName]: e.target.value,
+            [e.target.lastName]: e.target.value,
+            [e.target.email]: e.target.value,
+            [e.target.username]: e.target.value,
+            [e.target.password]: e.target.value});
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData); // Replace with actual logic
+        console.log(formData); 
+        
+
+
+        try {
+            const response = fetch('http://localhost:3000/register', {
+                method: 'POST',
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            
+            const data = response.json();
+            console.log(data);
+
+        } catch (error) {
+            console.error("There was a problem with the fetch operation:", error);
+        }
     };
 
     return (
