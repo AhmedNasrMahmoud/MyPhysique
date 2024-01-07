@@ -2,8 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button'
 
-import Register from '../Login-And-Register/Register.js';
-
 const Home = () => {
     const navigate = useNavigate();
 

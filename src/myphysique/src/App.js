@@ -9,6 +9,7 @@ import About from './Components/Home/About.js';
 import Register from './Components/Login-And-Register/Register.js';
 import Login from './Components/Login-And-Register/Login.js';
 import Navbar from './Components/Navbar/Nav.js';
+import Profile from './Components/Profile/Profile.js';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
             
           </Routes>
         </div>

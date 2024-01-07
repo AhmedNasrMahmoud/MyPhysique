@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 
-
 const Register = () => {
-    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -26,7 +24,7 @@ const Register = () => {
         console.log(formData); 
         
         try {
-            const response = await fetch('http://localhost:3000/register', {
+            const response = await fetch('http://localhost:3050/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -38,8 +36,6 @@ const Register = () => {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
     
-            const data = await response.json();
-            console.log(data);
         } catch (error) {
             console.error("There was a problem with the fetch operation:", error);
         }

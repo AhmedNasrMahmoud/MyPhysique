@@ -1,23 +1,42 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
-        username: '',
+        email: '',
         password: ''
     });
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData); // Replace with actual logic for user authentication
 
-        
+        try {
+            const response = await fetch('http://localhost:3050/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
 
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
 
+            navigate('/profile');
+
+        } catch (error) {
+            console.error("There was a problem with the fetch operation:", error);
+        }
 
     };
 
@@ -28,12 +47,12 @@ const Login = () => {
 
                 <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
                     <div className="flex flex-col mb-3">
-                        <label htmlFor="username" className="font-semibold text-gray-700">Username</label>
+                        <label htmlFor="email" className="font-semibold text-gray-700">Email</label>
                         <input
-                            id="username"
+                            id="email"
                             type="text"
-                            name="username"
-                            value={formData.username}
+                            name="email"
+                            value={formData.email}
                             onChange={handleChange}
                             className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                         />
