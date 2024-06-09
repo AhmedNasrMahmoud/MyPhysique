@@ -4,7 +4,7 @@ function About() {
     return (
         <div className='pt-2'>
             {/* About content goes here */}
-            THIS IS ABOUT PAGE BITCHES
+            THIS IS ABOUT PAGE
 
         </div>
     );

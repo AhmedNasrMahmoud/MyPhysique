@@ -10,13 +10,14 @@ import Register from './Components/Login-And-Register/Register.js';
 import Login from './Components/Login-And-Register/Login.js';
 import Navbar from './Components/Navbar/Nav.js';
 import Profile from './Components/Profile/Profile.js';
+import AddPlan from './Components/Profile/Add-A-Plan.js';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Navbar />
-        
+
         <div className="pt-16">
           <Routes>
             <Route exact path="/" element={<Home />} />
@@ -25,7 +26,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
-            
+            <Route path="/profile/Add-A-Plan" element={<AddPlan />} />
+
           </Routes>
         </div>
       </div>
